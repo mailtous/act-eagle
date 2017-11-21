@@ -29,17 +29,44 @@
         <version>7</version>
     </parent>
 
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profile.env>prod</profile.env>
+                <profile.site>xxx.com</profile.site>
+                <profile.js.compress>true</profile.js.compress>
+                <profile.jdk.version>1.8</profile.jdk.version>
+                <profiles.logger.path>${project.basedir}\logs</profiles.logger.path>
+                <profiles.logger.level>error</profiles.logger.level>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profile.env>dev</profile.env>
+                <profile.site>xxx.dev</profile.site>
+                <profile.js.compress>false</profile.js.compress>
+                <profile.jdk.version>1.8</profile.jdk.version>
+                <profiles.logger.path>${project.basedir}\logs</profiles.logger.path>
+                <profiles.logger.level>error</profiles.logger.level>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!--<act.version>1.4.9</act.version>-->
         <!--<act.version>1.4.6-SNAPSHOT</act.version>-->
-        <act.version>1.4.13</act.version>
-        <!--<act.version>1.5.1</act.version>-->
+        <!--<act.version>1.4.12</act.version>-->
+        <act.version>1.5.2</act.version>
+        <act.thymeleaf.version>1.1.0-SNAPSHOT</act.thymeleaf.version>
         <act.beetl.version>1.0.0</act.beetl.version>
-        <act.freemark.version>1.0.1</act.freemark.version>
         <act.mustache.version>1.0.0</act.mustache.version>
-        <act.thymeleaf.version>1.0.0</act.thymeleaf.version>
         <act.velocity.version>1.0.0</act.velocity.version>
         <app.entry>act-eagle</app.entry>
         <commons.lang.version>2.6</commons.lang.version>
@@ -51,7 +78,7 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
+                <filtering>false</filtering>
             </resource>
         </resources>
 
@@ -134,27 +161,27 @@
             <version>${act.version}</version>
         </dependency>
 
-<!--
-        我本地的版本
-        <dependency>
-            <groupId>org.actframework</groupId>
-            <artifactId>act</artifactId>
-            <version>${act.version}</version>
-            <exclusions>
-                <exclusion>
+        <!--
+                我本地的版本
+                <dependency>
+                    <groupId>org.actframework</groupId>
+                    <artifactId>act</artifactId>
+                    <version>${act.version}</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.osgl</groupId>
+                            <artifactId>genie</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+
+                &lt;!&ndash; genie 有BUG改为读取本地修正过的版本&ndash;&gt;
+                <dependency>
                     <groupId>org.osgl</groupId>
                     <artifactId>genie</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        &lt;!&ndash; genie 有BUG改为读取本地修正过的版本&ndash;&gt;
-        <dependency>
-            <groupId>org.osgl</groupId>
-            <artifactId>genie</artifactId>
-            <version>1.2.0-SNAPSHOT</version>
-        </dependency>
--->
+                    <version>1.2.0-SNAPSHOT</version>
+                </dependency>
+        -->
         <dependency>
             <groupId>org.actframework</groupId>
             <artifactId>act-thymeleaf</artifactId>
@@ -167,12 +194,6 @@
             <version>1.1.6</version>
         </dependency>
 
-        <!--   Apache commons begin -->
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>${commons.lang.version}</version>
-        </dependency>
         <!--  db begin -->
         <dependency>
             <groupId>org.actframework</groupId>

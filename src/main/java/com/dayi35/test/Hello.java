@@ -26,7 +26,6 @@ public class Hello extends BaseController {
 
     @GetAction("hello")
     public RenderAny hello() throws SQLException {
-        H.Request request = context.req();
         String msg = " hello to leetonton.";
         return tpl("hello.html");
     }
@@ -62,8 +61,9 @@ public class Hello extends BaseController {
     }
 
     @GetAction("user/page")
-    public RenderAny page(Page<User> page) throws SQLException {
+    public RenderAny page(Integer pageNo) throws SQLException {
         String sql = " select * from user where id > ?";
+        Page<User> page = new Page<>().setPageNo(pageNo);
         page = userService.getPage(page, sql, new Object[]{0});
         page.setUrl("page");
         render(page);
@@ -71,9 +71,6 @@ public class Hello extends BaseController {
     }
 
 
-    public static void main(String[] args) throws Exception {
-        Act.start("act-eagle");
 
-    }
 
 }

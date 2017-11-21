@@ -4,11 +4,11 @@ import act.Act;
 import act.db.beetlsql.BeetlSqlService;
 import com.dayi35.framework.page.Page;
 import com.dayi35.framework.utils.GenericsUtils;
-import org.apache.commons.lang.math.NumberUtils;
 import org.beetl.sql.core.SQLManager;
 import org.beetl.sql.core.SQLReady;
 import org.beetl.sql.core.engine.PageQuery;
 import org.osgl.util.C;
+import org.osgl.util.N;
 import org.osgl.util.S;
 
 import java.util.ArrayList;
@@ -98,9 +98,9 @@ public class BeeltSqlDao<T> implements BaseDao<T> {
      */
     public Page pageQueryToMyPage(PageQuery pq,Page page) {
         page.setItems(pq.getList());
-        page.setPageSize(NumberUtils.toInt(pq.getPageSize() + ""));
+        page.setPageSize(N.Num.valueOf(pq.getPageSize()).intValue());
         page.setTotal(pq.getTotalRow());
-        page.setPageNo(NumberUtils.toInt(pq.getPageNumber() + ""));
+        page.setPageNo(N.Num.valueOf(pq.getPageNumber()).intValue());
         page.setSf(pq.getOrderBy());
         return page;
     }

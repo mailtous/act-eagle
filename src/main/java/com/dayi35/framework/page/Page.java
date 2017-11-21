@@ -1,7 +1,8 @@
 package com.dayi35.framework.page;
 
-import org.apache.commons.lang.StringUtils;
+import org.osgl.util.S;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,31 +10,30 @@ import java.util.List;
 /**
  * Created by leeton on 9/25/17.
  */
-public class  Page<T> implements Serializable {
+public class Page<T> implements Serializable {
     // -- 公共变量 --//
     public static final String ASC = "asc";
     public static final String DESC = "desc";
     public static final int DEFAULT_PAGE_SIZE = 10;
     // -- 分页参数 --//
-    protected int pageNo = 1;
-    protected int pageSize = DEFAULT_PAGE_SIZE;
+    protected Integer pageNo = 1;
+    protected Integer pageSize = DEFAULT_PAGE_SIZE;
     protected String sf = "";      //排序字段，获得排序字段,无默认值.多个排序字段时用','分隔.
     protected String sc = "";      //排序方向，可选值为desc或asc,多个排序字段时用','分隔
     protected boolean autoCount = true;
-    protected String[] groupBy;    //分组条件
+    protected String[] groupBy ;    //分组条件
 
     protected List<T> items = new ArrayList<T>();  //返回数据列表
     protected long total = 0;  //总条数
+    protected String url = ""; //页面的URL
 
-    protected String url; //页面的URL
-
+    //======
     public Page() {
     }
 
     public Page(int pageSize) {
         this.pageSize = pageSize;
     }
-
 
     /**
      * 获得当前页的页号,序号从1开始,默认为1.
@@ -45,16 +45,11 @@ public class  Page<T> implements Serializable {
     /**
      * 设置当前页的页号,序号从1开始,低于1时自动调整为1.
      */
-    public void setPageNo(final int pageNo) {
-        this.pageNo = pageNo;
-
-        if (pageNo < 1) {
-            this.pageNo = 1;
+    public Page setPageNo(Integer pageNo) {
+        if (null == pageNo || pageNo < 1) {
+            pageNo = 1;
         }
-    }
-
-    public Page<T> pageNo(final int thePageNo) {
-        setPageNo(thePageNo);
+        this.pageNo = pageNo;
         return this;
     }
 
@@ -68,16 +63,11 @@ public class  Page<T> implements Serializable {
     /**
      * 设置每页的记录数量,低于1时自动调整为1.
      */
-    public void setPageSize(final int pageSize) {
-        this.pageSize = pageSize;
-
-        if (pageSize < 1) {
-            this.pageSize = 1;
+    public Page setPageSize(Integer pageSize) {
+        if (null == pageSize || pageSize < 1) {
+            pageSize = 1;
         }
-    }
-
-    public Page<T> pageSize(final int thePageSize) {
-        setPageSize(thePageSize);
+        this.pageSize = pageSize;
         return this;
     }
 
@@ -88,8 +78,13 @@ public class  Page<T> implements Serializable {
         return (pageNo - 1) * pageSize;
     }
 
-    public int getShowSize(){
-        if(null == items){
+    /**
+     * 显示当前页之后的剩余页数
+     *
+     * @return
+     */
+    public int getShowSize() {
+        if (null == items) {
             return getFirst();
         }
         return getFirst() + items.size();
@@ -119,16 +114,15 @@ public class  Page<T> implements Serializable {
      *
      * @param sc 可选值为desc或asc,多个排序字段时用','分隔.
      */
-    public Page<T> setSc(final String sc) {
+    public Page setSc(final String sc) {
         // 检查order字符串的合法值
-        String[] orders = StringUtils.split(StringUtils.lowerCase(sc), ',');
+        List<String> orders = S.split(sc.toLowerCase(), ',');
         for (String orderStr : orders) {
-            if (!StringUtils.equals(DESC, orderStr)
-                    && !StringUtils.equals(ASC, orderStr)) {
+            if (S.neq(DESC, orderStr) && !S.eq(ASC, orderStr)) {
                 throw new IllegalArgumentException("排序方向" + orderStr + "不是合法值");
             }
         }
-        this.sc = StringUtils.lowerCase(sc);
+        this.sc = sc.toLowerCase();
         return this;
     }
 
@@ -136,8 +130,7 @@ public class  Page<T> implements Serializable {
      * 是否已设置排序字段,无默认值.
      */
     public boolean isOrderBySetted() {
-        return (StringUtils.isNotBlank(sf) && StringUtils
-                .isNotBlank(sc));
+        return (S.isNotBlank(sf) && S.isNotBlank(sc));
     }
 
     /**
@@ -154,12 +147,6 @@ public class  Page<T> implements Serializable {
         this.autoCount = autoCount;
     }
 
-    public Page<T> autoCount(final boolean theAutoCount) {
-        setAutoCount(theAutoCount);
-        return this;
-    }
-
-
     /**
      * 取得页内的记录列表.
      */
@@ -170,8 +157,9 @@ public class  Page<T> implements Serializable {
     /**
      * 设置页内的记录列表.
      */
-    public void setItems(final List<T> items) {
+    public Page setItems(final List<T> items) {
         this.items = items;
+        return this;
     }
 
     /**
