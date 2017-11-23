@@ -14,6 +14,10 @@ public class BaseEntity implements Serializable {
     private Date createDate;
     private Date modifyDate;
 
+    public final static Integer DELETED= -1;
+    public final static Integer UN_DEL= 0;
+
+
     public BaseEntity() {
         createDate = new Date();
         modifyDate = new Date();

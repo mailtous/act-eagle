@@ -60,6 +60,7 @@ public class Hello extends BaseController {
         return renderJson(userPage);
     }
 
+/*
     @GetAction("user/page")
     public RenderAny page(Integer pageNo) throws SQLException {
         String sql = " select * from user where id > ?";
@@ -69,6 +70,7 @@ public class Hello extends BaseController {
         render(page);
         return tpl("user_page.html");
     }
+*/
 
 
 

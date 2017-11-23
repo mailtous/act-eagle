@@ -18,13 +18,13 @@ import java.util.List;
  * 基本的 CRUD, DAO基类
  * Created by leeton on 9/30/17.
  */
-public class BeeltSqlDao<T> implements BaseDao<T> {
+public class BeetlSqlDao<T> implements BaseDao<T> {
 
     private SQLManager sqlm;             // Beelsql 的实际操作类
     private BeetlSqlService dbService;   //取得数据源的连接
     private Class<T> persistentClass;    //实体类,子类调用才有效果,可恶的JAVA泛型擦除。
 
-    public BeeltSqlDao() {
+    public BeetlSqlDao() {
         dbService = Act.app().dbServiceManager().dbService("default");
         sqlm = dbService.beetlSql();
         getPersistentClass();

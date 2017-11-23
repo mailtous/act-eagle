@@ -1,10 +1,12 @@
 package com.dayi35.framework.service;
 
 import com.dayi35.framework.dao.BaseDao;
+import com.dayi35.framework.model.BaseEntity;
 import com.dayi35.framework.page.Page;
 import org.beetl.sql.core.DSTransactionManager;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,8 +42,21 @@ public class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
+    public int add(BaseEntity t) {
+        t.setCreateDate(new Date());
+        t.setModifyDate(new Date());
+        return save((T)t);
+    }
+
+    @Override
     public int update(T t) {
         return baseDao.save(t);
+    }
+
+    @Override
+    public int updateAndTime(BaseEntity t) {
+        t.setModifyDate(new Date());
+        return update((T)t);
     }
 
     @Override

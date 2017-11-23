@@ -1,5 +1,6 @@
 package com.dayi35.framework.service;
 
+import com.dayi35.framework.model.BaseEntity;
 import com.dayi35.framework.page.Page;
 
 import java.util.List;
@@ -13,7 +14,11 @@ public interface BaseService<T> {
 
     int save(T t);
 
+    int add(BaseEntity t);
+
     int update(T t);
+
+    int updateAndTime(BaseEntity t);
 
     int delete(T t);
 
