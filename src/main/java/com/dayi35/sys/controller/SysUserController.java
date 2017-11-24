@@ -5,11 +5,13 @@ import act.controller.annotation.UrlContext;
 import act.view.RenderAny;
 import com.dayi35.framework.controller.BaseController;
 import com.dayi35.framework.model.BaseEntity;
+import com.dayi35.framework.page.Page;
 import com.dayi35.framework.vo.BizRetVo;
 import com.dayi35.sys.model.SysUser;
 import com.dayi35.sys.service.SysUserService;
 import org.osgl.http.H;
 import org.osgl.mvc.annotation.GetAction;
+import org.osgl.mvc.annotation.Param;
 import org.osgl.mvc.annotation.PostAction;
 import org.osgl.mvc.result.RenderJSON;
 
@@ -30,7 +32,11 @@ public class SysUserController extends BaseController {
     private SysUserService sysUserService;
 
     @GetAction("list")
-    public RenderAny list(H.Request req) {
+    public RenderAny list(Integer pageNo) {
+        Page<SysUser> page = new Page<>().setPageNo(pageNo);
+        String sql = " select * from sys_user";
+        page = sysUserService.getPage(page, sql, null);
+        render(page);
         return tpl("list.html");
     }
 

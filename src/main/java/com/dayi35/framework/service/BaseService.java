@@ -24,6 +24,10 @@ public interface BaseService<T> {
 
     int delete(Long id);
 
+    T getObj(String sql,Object... args);
+
+    Long count(String sql,Object... args);
+
     List<T> getList(String sql);
 
     List<T> getList(String frameSql, Object... args);

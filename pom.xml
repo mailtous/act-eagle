@@ -23,11 +23,13 @@
     <artifactId>act-eagle</artifactId>
     <version>1.0.0</version>
 
+    <!-- ACT SNAPSHOT 用到的私服配置 -->
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
+    <!-- ACT SNAPSHOT 用到的私服配置 END -->
 
     <profiles>
         <profile>
@@ -211,6 +213,12 @@
             <version>2.7.1</version>
         </dependency>
         <!--  db end  -->
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.9</version>
+        </dependency>
 
     </dependencies>
 

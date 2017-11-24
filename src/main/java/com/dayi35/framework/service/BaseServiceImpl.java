@@ -69,6 +69,14 @@ public class BaseServiceImpl<T> implements BaseService<T> {
         return baseDao.delete(id);
     }
 
+    public T getObj(String sql,Object... args){
+       return baseDao.getObj(sql, args);
+    }
+
+    public Long count(String sql,Object... args){
+        return baseDao.count(sql, args);
+    }
+
     @Override
     public List<T> getList(String frameSql, Object... args) {
         return baseDao.getList(frameSql, args);

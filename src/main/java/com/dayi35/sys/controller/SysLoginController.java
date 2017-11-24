@@ -5,10 +5,14 @@ import act.controller.annotation.UrlContext;
 import act.view.RenderAny;
 import com.dayi35.framework.controller.BaseController;
 import com.dayi35.framework.vo.BizRetVo;
+import com.dayi35.sys.model.SysUser;
+import com.dayi35.sys.service.SysUserService;
 import org.osgl.http.H;
 import org.osgl.mvc.annotation.GetAction;
 import org.osgl.mvc.annotation.PostAction;
 import org.osgl.mvc.result.RenderJSON;
+
+import javax.inject.Inject;
 
 /**
  * Function:
@@ -20,15 +24,18 @@ import org.osgl.mvc.result.RenderJSON;
 @TemplateContext("/sys/login")
 public class SysLoginController extends BaseController {
 
+    @Inject
+    private SysUserService sysUserService;
+
     @GetAction("")
-    public RenderAny index(H.Request req) {
-        return tpl("sys_login_index.html");
+    public RenderAny login() {
+        return tpl("login.html");
     }
 
-    @GetAction("1")
-    public RenderJSON loginPost(H.Request req) {
-
-        return json(new BizRetVo<>());
+    @PostAction("post")
+    public RenderJSON loginPost(String userName ,String pwd) {
+        BizRetVo bizRetVo = sysUserService.checkLogin(userName, pwd);
+        return json(bizRetVo);
     }
 
 }

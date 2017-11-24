@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class BeetlSqlDao<T> implements BaseDao<T> {
 
-    private SQLManager sqlm;             // Beelsql 的实际操作类
+    protected SQLManager sqlm;             // Beelsql 的实际操作类
     private BeetlSqlService dbService;   //取得数据源的连接
     private Class<T> persistentClass;    //实体类,子类调用才有效果,可恶的JAVA泛型擦除。
 
@@ -61,6 +61,18 @@ public class BeetlSqlDao<T> implements BaseDao<T> {
     @Override
     public int delete(Long id) {
         return sqlm.deleteById(this.persistentClass, id);
+    }
+
+    public T getObj(String sql,Object... args){
+        List<T> resultList = sqlm.execute(new SQLReady(sql,args), this.persistentClass);
+        return C.isEmpty(resultList) ? null : resultList.get(0);
+    }
+
+    @Override
+    public Long count(String sql,Object... args) {
+        List<Long> countList = sqlm.execute(new SQLReady(sql,args),Long.class);
+        Long count = C.isEmpty(countList)?new Long(0):countList.get(0);
+        return count;
     }
 
     public List<T> getList(String sql) {

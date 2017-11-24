@@ -17,7 +17,7 @@ public class SysUser extends BaseEntity {
     private String pwd;
     private Long roleId;
     private Long deptId;
-    private Integer del_status;
+    private Integer delStatus;
 
     public String getUserName() {
         return userName;
@@ -51,11 +51,11 @@ public class SysUser extends BaseEntity {
         this.deptId = deptId;
     }
 
-    public Integer getDel_status() {
-        return del_status;
+    public Integer getDelStatus() {
+        return delStatus;
     }
 
-    public void setDel_status(Integer del_status) {
-        this.del_status = del_status;
+    public void setDelStatus(Integer delStatus) {
+        this.delStatus = delStatus;
     }
 }
