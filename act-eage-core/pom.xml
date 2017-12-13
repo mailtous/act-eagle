@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <parent>
+        <artifactId>act-eagle-parent</artifactId>
+        <groupId>act.eagle</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <groupId>act-eagle</groupId>
+    <artifactId>act-eagle-core</artifactId>
+    <version>1.0.0</version>
+
+    <build>
+        <finalName>act-eagle-core</finalName>
+    </build>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <act.version>1.5.2</act.version>
+        <act.beetl.version>1.0.0</act.beetl.version>
+        <osgl-tool.version>1.4.0</osgl-tool.version>
+        <mysql.connector.version>5.1.29</mysql.connector.version>
+        <HikariCP.version>2.7.1</HikariCP.version>
+        <act-beetlsql.version>1.2.0</act-beetlsql.version>
+    </properties>
+
+    <dependencies>
+        <!--  db begin -->
+        <dependency>
+            <groupId>org.actframework</groupId>
+            <artifactId>act-beetlsql</artifactId>
+            <version>${act-beetlsql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.osgl</groupId>
+            <artifactId>osgl-tool</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        <!--  db end  -->
+    </dependencies>
+
+</project>

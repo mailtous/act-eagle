@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="../asset/js/thymeleaf-fragment.js" defer="defer" th:if="false"></script>
+<link rel="stylesheet" type="text/css" media="all" href="../asset/css/common.css"/>
+<base href="../" th:if="false"/>
+<body>
+<div>
+     <label id="add">新增</label>
+</div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>username</th>
+            <th>create</th>
+        </tr>
+        </thead>
+        <tr th:each="user:${page.items}">
+            <th th:text="${user.id}">1</th>
+            <th th:text="${user.userName}">leeton</th>
+            <th th:text="${#dates.format(user.createDate, 'yyyy-MM-dd')}">2017-10-01</th>
+        </tr>
+    </table>
+</div>
+<div th:replace="/fragment/pager.html :: page"></div>
+
+</body>
+</html>
