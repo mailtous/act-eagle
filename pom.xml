@@ -26,6 +26,7 @@
     <modules>
         <module>act-eage-core</module>
         <module>act-eagle-sys</module>
+        <module>act-eagel-mq</module>
     </modules>
 
     <!-- ACT SNAPSHOT 用到的私服配置 -->
@@ -43,7 +44,8 @@
         <logback.version>1.1.6</logback.version>
         <junit.version>4.10</junit.version>
         <osgl-tool.version>1.4.0</osgl-tool.version>
-        <act.version>1.5.2</act.version>
+        <act.version>1.5.3</act.version>
+        <!--<act.version>1.6.0-BETA-5</act.version>-->
     </properties>
 
     <build>

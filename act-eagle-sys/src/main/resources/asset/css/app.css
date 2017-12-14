@@ -1,9 +1,23 @@
 body {
-    background-color: #222;
+    background-color: #0B101E;
     color: #f1f1f1;
     font-family: "Roboto", "San Francisco Text", "Noto Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     font-size: 14pt;
 }
+top{
+    background:#0B101E;
+}
+main{
+    background:#23262E;
+
+}
+nav{
+    background:#0B101E;
+}
+tree {
+    background:#0B101E;
+}
+
 form input, form select {
     font-size: 14pt;
 }
@@ -82,11 +96,12 @@ ul.menu > li {
     cursor: pointer;
     padding: 5px 25px;
     margin: auto;
-    color:#00b8b6;
+    /*color: #333;*/
 }
 
 ul.menu > li.current {
     font-weight: bold;
+    color: #779294;
 }
 
 ul.menu > li.current ul.menu {
@@ -95,12 +110,13 @@ ul.menu > li.current ul.menu {
 
 
 ul.menu > li:hover {
-    #background-color: #666;
-    color:#0f9ae0;
+    background-color: #110C1F;
+    /*background-color: #2F4056;*/
+
 }
 
 ul.menu > li.current:hover {
-    background-color: transparent;
+    background-color: #27242F;
 }
 
 .float-right {
@@ -136,3 +152,5 @@ li.current .hover-visible {
 .heading {
     font-weight: bold;
 }
+
+

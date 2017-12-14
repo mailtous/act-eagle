@@ -1,7 +1,7 @@
 <tree>
     <ul if="{ opts.childs}" class=" menu " >
-        <li each="{ menu in opts.childs }" class="admin-menu" >
-            <div class="sidebar-nav-sub-title" onclick="{toggleDisplay}">{ menu.funcName }</div>
+        <li each="{ menu in opts.childs }" class="{current: currentMenu === menu}">
+            <div onclick="{toggleDisplay}">{ menu.funcName }</div>
             <!-- 回调自身 -->
             <tree childs="{ menu.childs }" if="{collapsed}"/>
         </li>
@@ -39,6 +39,7 @@
 
         tag.toggleDisplay=function(e) {
             tag.collapsed = !tag.collapsed;
+            tag.currentMenu = e.item.menu;
             if("undefined" != e.item.menu.funcUrl){
                 route(e.item.menu.funcUrl);  // URL 发送到路由
             }
