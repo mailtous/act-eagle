@@ -11,6 +11,7 @@
         tag.url = "";
         tag.lastEvent = false;
 
+
         eventBus.on('open', function(data) {
 //            console.log("param.url=" + data.uri);
 //            console.log("param.view=" + data.view);
@@ -28,46 +29,6 @@
             tag.lastEvent = false;
             eventBus.trigger(lastEvent.id, lastEvent.param);
         })
-        /**
-         * 功能：页面HTML加载
-         * @url 页面url
-         * @data 搜索参数序列化对象
-         * @$pageListPanel 页面HTML容器，默认为$("#htmlbox")
-         */
-        var loadPage = function(url,params,$pageListPanel,callback) {
-            if (!url || url == "") return;
-            ajaxHTML(url,params,function (html) {
-                var $panel = $pageListPanel || $("#htmlbox");
-                $panel.html(html);
-                if(typeof callback == "function"){
-                    callback();
-                }
-            });
-        }
 
-        var ajaxHTML= function(url,params,callback) {
-            if (!url || url == "") return;
-            var _url = url;
-            _url += url.indexOf("?") == -1 ? "?" : "&";
-            _url += "timer=" + new Date().getTime();
-            console.log("数据加载中...请稍候...", "loading");
-//            $.jBox.tip("数据加载中...请稍候...", "loading");
-            $.ajax({
-                url: url,
-                data: params,
-                dataType: "html",
-                success: function (html) {
-                    if (typeof callback == "function") {
-                        callback(html);
-                    }
-//                    $.jBox.closeTip();
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-//                    $.jBox.closeTip();
-//                    $.jBox.error('<p style="color:red;padding-top:5px;font-size:14px;">程序异常，请联系管理员！</p>',"操作提示！");
-                    console.log("程序异常，请联系管理员");
-                }
-            });
-        }
     </script>
 </main>

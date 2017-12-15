@@ -39,11 +39,19 @@ public class SysUserController extends SysBaseController {
     }
 
 
-    @PostAction("edit")
-    public RenderJSON edit(SysUser sysUser) {
-        sysUser.setCreateDate(new Date());
-        sysUserService.save(sysUser);
-        return json(new BizRetVo<>().setSuccess("系统用户添加成功!"));
+    @GetAction("edit/{id}")
+    public RenderAny edit(@Param(defIntVal = 0) Integer id ) {
+        SysUser sysUser = new SysUser();
+        if (id > 0) {
+             sysUser = sysUserService.get(new Long(id));
+        }
+        return render("edit.html",sysUser);
+    }
+
+    @PostAction("edit/{id}")
+    public RenderJSON editBy(SysUser sysUser) {
+        sysUserService.update(sysUser);
+        return json(new BizRetVo<>().setSuccess("用户资料编辑成功!"));
     }
 
     @PostAction("add")
@@ -51,12 +59,6 @@ public class SysUserController extends SysBaseController {
         sysUser.setCreateDate(new Date());
         sysUserService.save(sysUser);
         return json(new BizRetVo<>().setSuccess("系统用户添加成功!"));
-    }
-
-    @PostAction("edit/{id}")
-    public RenderJSON editBy(SysUser sysUser) {
-        sysUserService.update(sysUser);
-        return json(new BizRetVo<>().setSuccess("用户资料编辑成功!"));
     }
 
     @PostAction("del/{id}")
