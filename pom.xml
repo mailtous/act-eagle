@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Copyright 2013 The OSGL MVC Server Project
-  ~
-  ~ The OSGL MVC Server Project licenses this file to you under the Apache License,
-  ~ version 2.0 (the "License"); you may not use this file except in compliance
-  ~ with the License. You may obtain a copy of the License at:
-  ~
-  ~   http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  ~ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-  ~ License for the specific language governing permissions and limitations
-  ~ under the License.
-  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -28,14 +13,24 @@
         <module>act-eagle-sys</module>
         <module>act-eagel-mq</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.actframework</groupId>
+            <artifactId>act</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.actframework</groupId>
+            <artifactId>act</artifactId>
+        </dependency>
+    </dependencies>
 
-    <!-- ACT SNAPSHOT 用到的私服配置 -->
+    <!-- SONATYPE SNAPSHOT 配置 -->
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    <!-- ACT SNAPSHOT 用到的私服配置 END -->
+    <!-- SNAPSHOT 配置 END -->
 
     <properties>
         <app.entry>act-eagle-parent</app.entry>

@@ -50,6 +50,7 @@
         <act.beetl.version>1.0.0</act.beetl.version>
         <mysql.connector.version>5.1.29</mysql.connector.version>
         <HikariCP.version>2.7.1</HikariCP.version>
+        <act-beetlsql.version>1.2.0</act-beetlsql.version>
     </properties>
 
     <build>
@@ -97,6 +98,11 @@
             <groupId>act-eagle</groupId>
             <artifactId>act-eagle-core</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.actframework</groupId>
+            <artifactId>act-beetlsql</artifactId>
+            <version>${act-beetlsql.version}</version>
         </dependency>
 
         <!--
